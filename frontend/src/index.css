@@ -174,12 +174,12 @@ list-style-type: none;
 .form-container li {
 display: flex;
 flex-direction: column;
-margin-bottom: Irem;
-margin-top: irem;
+margin-bottom: 1rem;
+margin-top: 1rem;
 }
 input {
 padding: 1rem;
-border: 0.1rem #cecece solid;
+border: 0.1rem #c0c0c0 solid;
 border-radius: 0.5rem;
 }
 
