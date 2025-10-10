@@ -1,8 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import "./style.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+// import React from "react";
+// import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+// import Home from "./Home/Home";
+// import Products from "./Products/Products";
+// frontend/src/App.tsx
+
+import React, { useState } from 'react';
+import './App.css';
+import './style.css'; // moved from Template/style.css
+import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 import Home from "./Home/Home";
 import Products from "./Products/Products";
 
@@ -18,6 +23,9 @@ function App() {
   return (
     <Router>
       <div className="grid-container">
+        <link rel="stylesheet" href="style.css" />
+        <title>Jet Piranha</title>
+        
         <header className="header">
           <div className="brand">
             <button onClick={openMenu}>&#9776;</button>
@@ -44,102 +52,13 @@ function App() {
           </ul>
         </aside>
 
-        <main>
-          <ul>
-            <li>Product 1</li>
-            <li>Product 2</li>
-            <li>Product 3</li>
-            <li>Product 4</li>
-            <li>Product 5</li>
-          </ul>
-          <div className="content">
-            <ul className="products">
-              <li>
-                <div className="product">
-                  <img
-                    className="product-image"
-                    src="images/d1.jpg"
-                    alt="product"
-                  />
+        <main className="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={<Products />} />
+          </Routes>
 
-                  <div className="product-name">
-                    <a href="product.html">Slim Shirt</a>
-                  </div>
-                  <div className="product-brand">Nike</div>
-                  <div className="product-price">$60</div>
-                  <div className="product-rating">4.5 Stars (10 Reviews)</div>
-                </div>
-              </li>
-
-              <li>
-                <div className="product">
-                  <img
-                    className="product-image"
-                    src="images/d1.jpg"
-                    alt="product"
-                  />
-
-                  <div className="product-name">
-                    <a href="product.html">Slim Shirt</a>
-                  </div>
-                  <div className="product-brand">Nike</div>
-                  <div className="product-price">$60</div>
-                  <div className="product-rating">4.5 Stars (10 Reviews)</div>
-                </div>
-              </li>
-
-              <li>
-                <div className="product">
-                  <img
-                    className="product-image"
-                    src="images/d1.jpg"
-                    alt="product"
-                  />
-
-                  <div className="product-name">
-                    <a href="product.html">Slim Shirt</a>
-                  </div>
-                  <div className="product-brand">Nike</div>
-                  <div className="product-price">$60</div>
-                  <div className="product-rating">4.5 Stars (10 Reviews)</div>
-                </div>
-              </li>
-
-              <li>
-                <div className="product">
-                  <img
-                    className="product-image"
-                    src="images/d1.jpg"
-                    alt="product"
-                  />
-
-                  <div className="product-name">
-                    <a href="product.html">Slim Shirt</a>
-                  </div>
-                  <div className="product-brand">Nike</div>
-                  <div className="product-price">$60</div>
-                  <div className="product-rating">4.5 Stars (10 Reviews)</div>
-                </div>
-              </li>
-
-              <li>
-                <div className="product">
-                  <img
-                    className="product-image"
-                    src="images/d1.jpg"
-                    alt="product"
-                  />
-
-                  <div className="product-name">
-                    <a href="product.html">Slim Shirt</a>
-                  </div>
-                  <div className="product-brand">Nike</div>
-                  <div className="product-price">$60</div>
-                  <div className="product-rating">4.5 Stars (10 Reviews)</div>
-                </div>
-              </li>
-            </ul>
-          </div>
+          
         </main>
         <footer>&copy; 2021 Jet Piranha</footer>
       </div>
