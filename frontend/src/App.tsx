@@ -10,6 +10,9 @@ import './style.css'; // moved from Template/style.css
 import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
 import Home from "./Home/Home";
 import Products from "./Products/Products";
+import Orders from "./Orders/Orders";
+import OrderDetail from "./Orders/OrderDetail";
+  
 
 function App() {
   const openMenu = () => {
@@ -34,6 +37,7 @@ function App() {
           <div className="header-links">
             <Link to="/">Home</Link>
             <Link to="/catalog">Catalog</Link>
+            <Link to="/orders">Orders</Link>
           </div>
         </header>
 
@@ -56,6 +60,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Products />} />
+            <Route path="orders" element={<Orders />}></Route>
+            <Route path="/order/:id" element={<OrderDetail />}></Route>
           </Routes>
 
           
