@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fulfillment Preview</title>
+    <style>
+      body { font-family: Arial, Helvetica, sans-serif; padding: 20px; }
+      h2 { margin-top: 0; }
+      .table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+      .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+      .table th { background: #f4f4f4; }
+      .error { color: #a02020; font-weight: bold; }
+      .fulfillment-summary .summary-stats { display:flex; gap:12px; }
+      .stat-card { background:#fafafa; padding:12px; border-radius:6px; text-align:center; width:120px; }
+      .stat-number { display:block; font-size:20px; font-weight:700; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React, ReactDOM (UMD builds) and Babel for in-browser JSX transform -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const Fulfillment = () => {
+        const fulfillmentData = [
+          { id: 'F1001', orderId: 'ORD001', customer: 'John Smith', product: 'T-Shirt', quantity: 2, status: 'shipped', shipDate: '2023-10-15', trackingNumber: 'TRK123456789' },
+          { id: 'F1002', orderId: 'ORD002', customer: 'Jane Doe', product: 'Jeans', quantity: 1, status: 'unshipped', shipDate: '', trackingNumber: '' },
+          { id: 'F1003', orderId: 'ORD003', customer: 'Bob Johnson', product: 'Hoodie', quantity: 1, status: 'shipped', shipDate: '2023-10-14', trackingNumber: 'TRK987654321' },
+          { id: 'F1004', orderId: 'ORD004', customer: 'Alice Brown', product: 'Socks', quantity: 5, status: 'unshipped', shipDate: '', trackingNumber: '' },
+          { id: 'F1005', orderId: 'ORD005', customer: 'Charlie Wilson', product: 'Cap', quantity: 1, status: 'shipped', shipDate: '2023-10-13', trackingNumber: 'TRK456789123' }
+        ];
+
+        return (
+          <div className="fulfillment">
+            <h2>Order Fulfillment</h2>
+            <div className="fulfillment-list">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Fulfillment ID</th>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Ship Date</th>
+                    <th>Tracking #</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {fulfillmentData.map((fulfillment) => (
+                    <tr key={fulfillment.id}>
+                      <td>{fulfillment.id}</td>
+                      <td>{fulfillment.orderId}</td>
+                      <td>{fulfillment.customer}</td>
+                      <td>{fulfillment.product}</td>
+                      <td>{fulfillment.quantity}</td>
+                      <td>
+                        <span
+                          className={fulfillment.status === 'unshipped' ? 'error' : ''}
+                          style={{ color: fulfillment.status === 'unshipped' ? '#a02020' : '#204020', fontWeight: 'bold' }}
+                        >
+                          {fulfillment.status.charAt(0).toUpperCase() + fulfillment.status.slice(1)}
+                        </span>
+                      </td>
+                      <td>{fulfillment.shipDate || 'Pending'}</td>
+                      <td>{fulfillment.trackingNumber || 'N/A'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="fulfillment-summary">
+              <h3>Fulfillment Summary</h3>
+              <div className="summary-stats">
+                <div className="stat-card">
+                  <span className="stat-number">{fulfillmentData.filter(item => item.status === 'shipped').length}</span>
+                  <span className="stat-label">Shipped Orders</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-number" style={{color: '#a02020'}}>{fulfillmentData.filter(item => item.status === 'unshipped').length}</span>
+                  <span className="stat-label">Pending Shipment</span>
+                </div>
+                <div className="stat-card">
+                  <span className="stat-number">{fulfillmentData.length}</span>
+                  <span className="stat-label">Total Orders</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      // Mount using React 18 createRoot if available
+      const rootEl = document.getElementById('root');
+      if (ReactDOM.createRoot) {
+        ReactDOM.createRoot(rootEl).render(<Fulfillment />);
+      } else {
+        ReactDOM.render(<Fulfillment />, rootEl);
+      }
+    </script>
+  </body>
+</html>

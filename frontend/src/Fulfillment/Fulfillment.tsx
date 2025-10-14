@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Fulfillment = () => {
   // Mock fulfillment data with shipped and unshipped orders
@@ -127,3 +126,4 @@ const Fulfillment = () => {
 };
 
 export default Fulfillment;
+

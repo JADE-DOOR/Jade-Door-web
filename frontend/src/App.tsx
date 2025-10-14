@@ -4,16 +4,15 @@
 // import Products from "./Products/Products";
 // frontend/src/App.tsx
 
-import React from 'react';
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import './App.css';
-import './style.css'; // moved from Template/style.css
-import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import Fulfillment from "./Fulfillment/Fulfillment";
 import Home from "./Home/Home";
-import Products from "./Products/Products";
-import Orders from "./Orders/Orders";
 import OrderDetail from "./Orders/OrderDetail";
+import Orders from "./Orders/Orders";
 import PaymentScreen from "./Payment/Payment";
-  
+import Products from "./Products/Products";
+import './style.css'; // moved from Template/style.css
 
 function App() {
   const openMenu = () => {
@@ -39,7 +38,9 @@ function App() {
             <Link to="/">Home</Link>
             <Link to="/catalog">Catalog</Link>
             <Link to="/orders">Orders</Link>
+            <Link to="/fulfillment">Fulfillment</Link>
             <Link to="/payment">Payment</Link>
+            
           </div>
         </header>
 
@@ -64,6 +65,7 @@ function App() {
             <Route path="/catalog" element={<Products />} />
             <Route path="/orders" element={<Orders />}></Route>
             <Route path="/order/:id" element={<OrderDetail />}></Route>
+            <Route path="/fulfillment" element={<Fulfillment />} />
             <Route path="/payment" element={<PaymentScreen />}></Route>
           </Routes>
 
